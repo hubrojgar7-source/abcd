@@ -204,7 +204,7 @@ export default function Marketplace() {
                           {item.type === "Sell" ? "Buy" : item.type === "Exchange" ? "Swap" : "Claim"}
                         </button>
                         <button
-                          onClick={() => router.push(`/dashboard/messages`)}
+                          onClick={() => router.push(`/dashboard/messages?userId=${item.user_id}`)}
                           className="flex-1 rounded-full border border-gray-200 px-4 py-2.5 text-sm font-medium text-[#6B6B6B] transition-colors hover:bg-gray-50"
                         >
                           Message
