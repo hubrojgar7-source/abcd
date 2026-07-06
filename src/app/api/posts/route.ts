@@ -14,9 +14,13 @@ async function ensurePostsTable() {
       price VARCHAR(50),
       category VARCHAR(100),
       image_url TEXT,
+      images TEXT,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
   `);
+  try {
+    await pool.query(`ALTER TABLE posts ADD COLUMN IF NOT EXISTS images TEXT`);
+  } catch {}
 }
 
 export async function GET() {
@@ -28,7 +32,15 @@ export async function GET() {
        LEFT JOIN users ON posts.user_id = users.id
        ORDER BY posts.created_at DESC`
     );
-    return NextResponse.json(result.rows);
+    const rows = result.rows.map((row) => {
+      if (row.images) {
+        try { row.images = JSON.parse(row.images); } catch { row.images = row.image_url ? [row.image_url] : []; }
+      } else {
+        row.images = row.image_url ? [row.image_url] : [];
+      }
+      return row;
+    });
+    return NextResponse.json(rows);
   } catch (error) {
     console.error("Error fetching posts:", error);
     return NextResponse.json({ error: "Failed to fetch posts" }, { status: 500 });
@@ -45,20 +57,27 @@ export async function POST(req: Request) {
     }
 
     const userId = (session.user as { id: string }).id;
-    const { title, description, type, price, category, image_url } = await req.json();
+    const { title, description, type, price, category, image_url, images } = await req.json();
 
     if (!title || !description || !type) {
       return NextResponse.json({ error: "Title, description, and type are required" }, { status: 400 });
     }
 
+    const imagesArray = images || (image_url ? [image_url] : []);
+    const imagesJson = imagesArray.length > 0 ? JSON.stringify(imagesArray) : null;
+    const fallbackImage = imagesArray.length > 0 ? imagesArray[0] : null;
+
     const result = await pool.query(
-      `INSERT INTO posts (user_id, title, description, type, price, category, image_url)
-       VALUES ($1, $2, $3, $4, $5, $6, $7)
+      `INSERT INTO posts (user_id, title, description, type, price, category, image_url, images)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
        RETURNING *`,
-      [userId, title, description, type, price || null, category || null, image_url || null]
+      [userId, title, description, type, price || null, category || null, fallbackImage, imagesJson]
     );
 
-    return NextResponse.json(result.rows[0], { status: 201 });
+    const row = result.rows[0];
+    row.images = imagesArray;
+
+    return NextResponse.json(row, { status: 201 });
   } catch (error) {
     console.error("Error creating post:", error);
     return NextResponse.json({ error: "Failed to create post" }, { status: 500 });

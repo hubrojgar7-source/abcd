@@ -38,6 +38,13 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
       return NextResponse.json({ error: "Post not found" }, { status: 404 });
     }
 
+    const post = postResult.rows[0];
+    if (post.images) {
+      try { post.images = JSON.parse(post.images); } catch { post.images = post.image_url ? [post.image_url] : []; }
+    } else {
+      post.images = post.image_url ? [post.image_url] : [];
+    }
+
     const reviewsResult = await pool.query(
       `SELECT reviews.*, users.name AS user_name
        FROM reviews
@@ -57,7 +64,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
     );
 
     return NextResponse.json({
-      ...postResult.rows[0],
+      ...post,
       reviews: reviewsResult.rows,
       comments: commentsResult.rows,
     });

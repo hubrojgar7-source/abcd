@@ -33,6 +33,7 @@ interface PostDetail {
   price: string | null;
   category: string | null;
   image_url: string | null;
+  images: string[];
   user_name: string;
   user_email: string;
   created_at: string;
@@ -89,6 +90,7 @@ export default function PostDetail() {
 
   const [post, setPost] = useState<PostDetail | null>(null);
   const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState(0);
 
   const [reviewRating, setReviewRating] = useState(0);
   const [reviewContent, setReviewContent] = useState("");
@@ -185,12 +187,31 @@ export default function PostDetail() {
       <div className="flex gap-6">
         <div className="flex-1">
           <div className={`flex h-[420px] items-center justify-center rounded-[24px] bg-gradient-to-br ${cfg.gradient}`}>
-            {post.image_url ? (
+            {post.images && post.images.length > 0 ? (
+              <img src={post.images[selectedImage] || post.images[0]} alt={post.title} className="h-full w-full rounded-[24px] object-cover" />
+            ) : post.image_url ? (
               <img src={post.image_url} alt={post.title} className="h-full w-full rounded-[24px] object-cover" />
             ) : (
               <Icon size={120} strokeWidth={1.5} className="text-white" />
             )}
           </div>
+          {post.images && post.images.length > 1 && (
+            <div className="mt-3 flex gap-3">
+              {post.images.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setSelectedImage(i)}
+                  className={`h-[72px] w-[72px] flex-shrink-0 overflow-hidden rounded-[12px] transition-all ${
+                    selectedImage === i
+                      ? "ring-2 ring-[#B8F25E] ring-offset-2 opacity-100"
+                      : "opacity-60 hover:opacity-100"
+                  }`}
+                >
+                  <img src={img} alt={`Photo ${i + 1}`} className="h-full w-full object-cover" />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="w-[420px] flex flex-col gap-4">

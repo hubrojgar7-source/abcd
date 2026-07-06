@@ -15,6 +15,7 @@ interface Post {
   price: string | null;
   category: string | null;
   image_url: string | null;
+  images: string[];
   user_name: string;
   created_at: string;
 }
@@ -176,7 +177,17 @@ export default function Marketplace() {
                 className="rounded-[24px] bg-white p-5 shadow-sm transition-all hover:shadow-md"
               >
                 <div className={`flex h-[200px] items-center justify-center rounded-[16px] bg-gradient-to-br ${cfg.gradient}`}>
-                  {item.image_url ? (
+                  {item.images && item.images.length > 0 ? (
+                    <img
+                      src={item.images[0]}
+                      alt={item.title}
+                      className="h-full w-full rounded-[16px] object-cover"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = "none";
+                        (e.target as HTMLImageElement).parentElement!.querySelector(".fallback-icon")?.classList.remove("hidden");
+                      }}
+                    />
+                  ) : item.image_url ? (
                     <img
                       src={item.image_url}
                       alt={item.title}
@@ -187,7 +198,7 @@ export default function Marketplace() {
                       }}
                     />
                   ) : null}
-                  <Icon size={80} strokeWidth={1.5} className={`text-white ${item.image_url ? "hidden fallback-icon" : ""}`} />
+                  <Icon size={80} strokeWidth={1.5} className={`text-white ${(item.images && item.images.length > 0) || item.image_url ? "hidden fallback-icon" : ""}`} />
                 </div>
                 <div className="mt-4">
                   <div className="flex items-center justify-between">

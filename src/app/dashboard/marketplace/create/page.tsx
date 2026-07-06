@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Tag, ArrowLeftRight, Gift, UserPlus, ArrowLeft, ChevronDown } from "lucide-react";
 import Link from "next/link";
-import ImageUploader from "@/components/image-uploader";
+import MultiImageUploader from "@/components/multi-image-uploader";
 
 const postTypes = [
   { value: "Sell", label: "Sell", icon: Tag, gradient: "from-[#B8F25E] to-[#4CAF50]" },
@@ -25,7 +25,7 @@ export default function CreatePostPage() {
   const [type, setType] = useState("Sell");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [images, setImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -40,7 +40,7 @@ export default function CreatePostPage() {
       const res = await fetch("/api/posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, description, type, price, category, image_url: imageUrl }),
+        body: JSON.stringify({ title, description, type, price, category, images }),
       });
 
       const data = await res.json();
@@ -144,10 +144,10 @@ export default function CreatePostPage() {
 
           {/* Photo Upload */}
           <div className="rounded-[24px] bg-white p-6 shadow-sm">
-            <h2 className="text-lg font-semibold text-[#202124]">Photo</h2>
-            <p className="mt-1 text-sm text-[#9A9A9A]">Add a photo to attract more attention</p>
+            <h2 className="text-lg font-semibold text-[#202124]">Photos</h2>
+            <p className="mt-1 text-sm text-[#9A9A9A]">Add up to 4 photos. First photo is the main image.</p>
             <div className="mt-5">
-              <ImageUploader onUpload={setImageUrl} currentImage={imageUrl} />
+              <MultiImageUploader onUpload={setImages} currentImages={images} maxImages={4} />
             </div>
           </div>
 
@@ -226,8 +226,8 @@ export default function CreatePostPage() {
           <span className="text-sm font-medium text-[#9A9A9A]">Live Preview</span>
           <div className="rounded-[24px] bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
             <div className={`flex h-[200px] items-center justify-center rounded-[16px] bg-gradient-to-br ${selectedType?.gradient || "from-gray-200 to-gray-300"}`}>
-              {imageUrl ? (
-                <img src={imageUrl} alt="Preview" className="h-full w-full rounded-[16px] object-cover" />
+              {images.length > 0 ? (
+                <img src={images[0]} alt="Preview" className="h-full w-full rounded-[16px] object-cover" />
               ) : (
                 selectedType && <selectedType.icon size={72} strokeWidth={1.5} className="text-white" />
               )}
