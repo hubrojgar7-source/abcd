@@ -185,8 +185,8 @@ export default function PostDetail() {
       </button>
 
       <div className="flex gap-8">
-        <div className="w-[480px] flex-shrink-0">
-          <div className={`flex h-[380px] items-center justify-center rounded-[20px] bg-gradient-to-br ${cfg.gradient}`}>
+        <div className="w-[560px] flex-shrink-0">
+          <div className={`flex h-[440px] items-center justify-center rounded-[20px] bg-gradient-to-br ${cfg.gradient}`}>
             {post.images && post.images.length > 0 ? (
               <img src={post.images[selectedImage] || post.images[0]} alt={post.title} className="h-full w-full rounded-[20px] object-cover" />
             ) : post.image_url ? (
@@ -214,7 +214,7 @@ export default function PostDetail() {
           )}
         </div>
 
-        <div className="flex flex-1 flex-col gap-4">
+        <div className="flex flex-1 flex-col gap-4 max-w-[380px]">
           <div className="rounded-[24px] bg-white p-6 shadow-sm">
             <div className="flex items-center gap-3">
               <span className={`rounded-full px-4 py-1.5 text-xs font-semibold ${cfg.badge}`}>
