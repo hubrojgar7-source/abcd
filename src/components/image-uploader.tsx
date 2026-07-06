@@ -14,6 +14,36 @@ export default function ImageUploader({ onUpload, currentImage }: ImageUploaderP
   const [error, setError] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const uploadToLocal = async (file: File): Promise<string | null> => {
+    const formData = new FormData();
+    formData.append("file", file);
+    const res = await fetch("/api/upload", { method: "POST", body: formData });
+    const data = await res.json();
+    return data.url || null;
+  };
+
+  const uploadToImageKit = async (file: File): Promise<string | null> => {
+    try {
+      const authRes = await fetch("/api/imagekit");
+      const auth = await authRes.json();
+      if (auth.error) return null;
+
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("fileName", `sewago-${Date.now()}-${file.name}`);
+      formData.append("publicKey", process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY || "");
+      formData.append("signature", auth.signature);
+      formData.append("expire", auth.expire.toString());
+      formData.append("token", auth.token);
+
+      const uploadRes = await fetch("https://upload.imagekit.io/api/v1/files/upload", { method: "POST", body: formData });
+      const data = await uploadRes.json();
+      return data.url || null;
+    } catch {
+      return null;
+    }
+  };
+
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -27,46 +57,18 @@ export default function ImageUploader({ onUpload, currentImage }: ImageUploaderP
     setPreview(URL.createObjectURL(file));
     setUploading(true);
 
-    try {
-      const authRes = await fetch("/api/imagekit");
-      const auth = await authRes.json();
+    let url = await uploadToImageKit(file);
+    if (!url) url = await uploadToLocal(file);
 
-      if (auth.error) {
-        setError("Upload config error");
-        setUploading(false);
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("fileName", `sewago-${Date.now()}-${file.name}`);
-      formData.append("publicKey", process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY || "");
-      formData.append("signature", auth.signature);
-      formData.append("expire", auth.expire.toString());
-      formData.append("token", auth.token);
-
-      const uploadRes = await fetch(
-        "https://upload.imagekit.io/api/v1/files/upload",
-        { method: "POST", body: formData }
-      );
-
-      const data = await uploadRes.json();
-
-      if (data.url) {
-        onUpload(data.url);
-        setPreview(data.url);
-      } else {
-        console.error("ImageKit upload failed:", JSON.stringify(data));
-        setError(data.error?.message || data.error || "Upload failed — check ImageKit config");
-        setPreview("");
-      }
-    } catch (err) {
-      console.error("Upload failed:", err);
-      setError("Upload failed. Check your connection.");
+    if (url) {
+      onUpload(url);
+      setPreview(url);
+    } else {
+      setError("Upload failed. Please try again.");
       setPreview("");
-    } finally {
-      setUploading(false);
     }
+
+    setUploading(false);
   };
 
   const removeImage = () => {
