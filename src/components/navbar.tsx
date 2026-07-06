@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Search, Bell, Info, ChevronDown } from "lucide-react";
 
@@ -16,6 +16,7 @@ const navLinks = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const { data: session } = useSession();
   const user = session?.user;
   const initial = user?.name?.charAt(0)?.toUpperCase() || "S";
@@ -45,7 +46,10 @@ export default function Navbar() {
 
       <div className="absolute right-8 flex items-center gap-4">
         <div className="flex items-center gap-6 bg-white px-[21px] py-[13px] rounded-[36px] shadow-sm">
-          <button className="flex items-center justify-center text-[#222222] transition-colors hover:text-[#1D1B17]">
+          <button
+            onClick={() => router.push("/dashboard/messages")}
+            className="flex items-center justify-center text-[#222222] transition-colors hover:text-[#1D1B17]"
+          >
             <Search size={28} strokeWidth={2} />
           </button>
           <button className="flex items-center justify-center text-[#222222] transition-colors hover:text-[#1D1B17]">

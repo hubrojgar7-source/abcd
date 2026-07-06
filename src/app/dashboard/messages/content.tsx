@@ -196,7 +196,8 @@ export default function MessagesContent() {
   const selectedConvo = conversations.find((c) => c.id === selectedId) || null;
 
   const filteredConvos = conversations.filter((c) =>
-    c.name.toLowerCase().includes(search.toLowerCase())
+    c.name.toLowerCase().includes(search.toLowerCase()) ||
+    c.lastMessage.toLowerCase().includes(search.toLowerCase())
   );
 
   const handleSend = async () => {
