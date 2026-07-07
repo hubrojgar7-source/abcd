@@ -7,6 +7,7 @@ import {
   CalendarDays, MapPin, Clock, Loader2, GraduationCap, Cpu, Heart,
   Users, Trophy, Palette, Briefcase, PartyPopper, Plus,
 } from "lucide-react";
+import ImageLightbox from "@/components/image-lightbox";
 
 interface Event {
   id: number;
@@ -58,6 +59,7 @@ export default function EventsPage() {
   const [events, setEvents] = useState<Event[]>([]);
   const [filter, setFilter] = useState("All");
   const [loading, setLoading] = useState(true);
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
 
   useEffect(() => {
     fetch("/api/events")
@@ -139,12 +141,14 @@ export default function EventsPage() {
                   const Icon = cfg.icon;
                   return (
                     <div key={event.id} className="rounded-[24px] bg-white shadow-sm transition-shadow hover:shadow-md overflow-hidden">
-                      <div className={`relative flex w-full items-center justify-center overflow-hidden ${event.image_url ? "bg-white" : cfg.bg}`} style={{ aspectRatio: "4 / 3" }}>
+                      <div className={`relative flex w-full items-center justify-center overflow-hidden ${event.image_url ? "bg-gray-50" : cfg.bg}`} style={{ aspectRatio: "4 / 3" }}>
                         {event.image_url ? (
-                          <>
-                            <img src={event.image_url} alt="" className="absolute inset-0 h-full w-full scale-110 object-cover blur-sm opacity-30" />
-                            <img src={event.image_url} alt={event.title} className="relative h-full w-full object-contain" />
-                          </>
+                          <img
+                            src={event.image_url}
+                            alt={event.title}
+                            className="h-full w-full cursor-pointer object-contain transition-transform hover:scale-105"
+                            onClick={() => setLightbox({ src: event.image_url!, alt: event.title })}
+                          />
                         ) : (
                           <Icon size={56} strokeWidth={1.2} className={cfg.color} />
                         )}
@@ -199,12 +203,13 @@ export default function EventsPage() {
                   const Icon = cfg.icon;
                   return (
                     <div key={event.id} className="rounded-[24px] bg-white shadow-sm overflow-hidden opacity-60">
-                      <div className={`relative flex w-full items-center justify-center overflow-hidden ${event.image_url ? "bg-white" : cfg.bg}`} style={{ aspectRatio: "4 / 3" }}>
+                      <div className={`relative flex w-full items-center justify-center overflow-hidden ${event.image_url ? "bg-gray-50" : cfg.bg}`} style={{ aspectRatio: "4 / 3" }}>
                         {event.image_url ? (
-                          <>
-                            <img src={event.image_url} alt="" className="absolute inset-0 h-full w-full scale-110 object-cover blur-sm opacity-30" />
-                            <img src={event.image_url} alt={event.title} className="relative h-full w-full object-contain" />
-                          </>
+                          <img
+                            src={event.image_url}
+                            alt={event.title}
+                            className="h-full w-full object-contain"
+                          />
                         ) : (
                           <Icon size={48} strokeWidth={1.2} className={cfg.color} />
                         )}
@@ -223,6 +228,9 @@ export default function EventsPage() {
             </div>
           )}
         </div>
+      )}
+      {lightbox && (
+        <ImageLightbox src={lightbox.src} alt={lightbox.alt} onClose={() => setLightbox(null)} />
       )}
     </div>
   );
