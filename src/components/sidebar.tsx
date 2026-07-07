@@ -42,8 +42,10 @@ export default function Sidebar() {
               </Link>
               {!active && (
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 z-50 opacity-0 pointer-events-none group-hover/item:opacity-100">
-                  <div className="h-12 bg-[#1D1B17] text-white text-base font-medium rounded-full pl-2.5 pr-4 flex items-center gap-2.5 whitespace-nowrap shadow-lg">
-                    <Icon size={22} className="flex-shrink-0" />
+                  <div className="h-12 bg-gray-200 text-gray-700 text-base font-medium rounded-full pl-2 pr-4 flex items-center gap-2.5 whitespace-nowrap shadow-lg">
+                    <div className="h-8 w-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Icon size={18} />
+                    </div>
                     {label}
                   </div>
                 </div>
