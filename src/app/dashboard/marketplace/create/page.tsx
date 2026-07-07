@@ -188,22 +188,24 @@ export default function CreatePostPage() {
               <MultiImageUploader onUpload={setImages} currentImages={images} maxImages={4} />
             </div>
 
-            <div className="flex items-center gap-4 mt-auto pt-4">
-              <Link
-                href="/dashboard/marketplace"
-                className="rounded-full border border-gray-200 bg-white px-10 py-3.5 text-base font-medium text-[#6B6B6B] transition-all hover:bg-gray-50"
-              >
-                Cancel
-              </Link>
-              <button
-                type="submit"
-                disabled={loading}
-                className="flex items-center gap-2.5 rounded-full bg-[#B8F25E] px-12 py-3.5 text-base font-semibold text-[#202124] transition-all hover:bg-[#a8e04e] disabled:opacity-50"
-              >
-                {loading ? <Loader2 size={18} className="animate-spin" /> : null}
-                {loading ? "Posting..." : "Post Listing"}
-              </button>
             </div>
+          </div>
+
+          <div className="flex items-center gap-4 mt-5">
+            <Link
+              href="/dashboard/marketplace"
+              className="rounded-full border border-gray-200 bg-white px-10 py-3.5 text-base font-medium text-[#6B6B6B] transition-all hover:bg-gray-50"
+            >
+              Cancel
+            </Link>
+            <button
+              type="submit"
+              disabled={loading}
+              className="flex items-center gap-2.5 rounded-full bg-[#B8F25E] px-12 py-3.5 text-base font-semibold text-[#202124] transition-all hover:bg-[#a8e04e] disabled:opacity-50"
+            >
+              {loading ? <Loader2 size={18} className="animate-spin" /> : null}
+              {loading ? "Posting..." : "Post Listing"}
+            </button>
           </div>
         </form>
 
