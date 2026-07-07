@@ -176,29 +176,26 @@ export default function Marketplace() {
                 href={`/dashboard/marketplace/${item.id}`}
                 className="rounded-[24px] bg-white p-5 shadow-sm transition-all hover:shadow-md"
               >
-                <div className={`flex h-[200px] items-center justify-center rounded-[16px] bg-gradient-to-br ${cfg.gradient}`}>
-                  {item.images && item.images.length > 0 ? (
-                    <img
-                      src={item.images[0]}
-                      alt={item.title}
-                      className="h-full w-full rounded-[16px] object-contain"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = "none";
-                        (e.target as HTMLImageElement).parentElement!.querySelector(".fallback-icon")?.classList.remove("hidden");
-                      }}
-                    />
-                  ) : item.image_url ? (
-                    <img
-                      src={item.image_url}
-                      alt={item.title}
-                      className="h-full w-full rounded-[16px] object-contain"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = "none";
-                        (e.target as HTMLImageElement).parentElement!.querySelector(".fallback-icon")?.classList.remove("hidden");
-                      }}
-                    />
+                <div className={`relative flex h-[200px] items-center justify-center overflow-hidden rounded-[16px] bg-gradient-to-br ${cfg.gradient}`}>
+                  {(item.images && item.images.length > 0) || item.image_url ? (
+                    <>
+                      <img
+                        src={(item.images && item.images[0]) || item.image_url || ""}
+                        alt=""
+                        className="absolute inset-0 h-full w-full scale-110 object-cover blur-xl opacity-60"
+                      />
+                      <img
+                        src={(item.images && item.images[0]) || item.image_url || ""}
+                        alt={item.title}
+                        className="relative h-full w-full rounded-[16px] object-contain"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = "none";
+                          (e.target as HTMLImageElement).parentElement!.querySelector(".fallback-icon")?.classList.remove("hidden");
+                        }}
+                      />
+                    </>
                   ) : null}
-                  <Icon size={80} strokeWidth={1.5} className={`text-white ${(item.images && item.images.length > 0) || item.image_url ? "hidden fallback-icon" : ""}`} />
+                  <Icon size={80} strokeWidth={1.5} className={`text-white ${item.images?.length || item.image_url ? "hidden fallback-icon" : ""}`} />
                 </div>
                 <div className="mt-4">
                   <div className="flex items-center justify-between">

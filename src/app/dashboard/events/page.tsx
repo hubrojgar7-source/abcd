@@ -139,9 +139,12 @@ export default function EventsPage() {
                   const Icon = cfg.icon;
                   return (
                     <div key={event.id} className="rounded-[24px] bg-white shadow-sm transition-shadow hover:shadow-md overflow-hidden">
-                      <div className={`flex w-full items-center justify-center ${cfg.bg}`} style={{ aspectRatio: "4 / 3" }}>
+                      <div className={`relative flex w-full items-center justify-center overflow-hidden ${cfg.bg}`} style={{ aspectRatio: "4 / 3" }}>
                         {event.image_url ? (
-                          <img src={event.image_url} alt={event.title} className="h-full w-full object-contain" />
+                          <>
+                            <img src={event.image_url} alt="" className="absolute inset-0 h-full w-full scale-110 object-cover blur-xl opacity-60" />
+                            <img src={event.image_url} alt={event.title} className="relative h-full w-full object-contain" />
+                          </>
                         ) : (
                           <Icon size={56} strokeWidth={1.2} className={cfg.color} />
                         )}
@@ -196,9 +199,12 @@ export default function EventsPage() {
                   const Icon = cfg.icon;
                   return (
                     <div key={event.id} className="rounded-[24px] bg-white shadow-sm overflow-hidden opacity-60">
-                      <div className={`flex w-full items-center justify-center ${cfg.bg}`} style={{ aspectRatio: "4 / 3" }}>
+                      <div className={`relative flex w-full items-center justify-center overflow-hidden ${cfg.bg}`} style={{ aspectRatio: "4 / 3" }}>
                         {event.image_url ? (
-                          <img src={event.image_url} alt={event.title} className="h-full w-full object-contain" />
+                          <>
+                            <img src={event.image_url} alt="" className="absolute inset-0 h-full w-full scale-110 object-cover blur-xl opacity-60" />
+                            <img src={event.image_url} alt={event.title} className="relative h-full w-full object-contain" />
+                          </>
                         ) : (
                           <Icon size={48} strokeWidth={1.2} className={cfg.color} />
                         )}

@@ -186,11 +186,17 @@ export default function PostDetail() {
 
       <div className="flex gap-8">
         <div className="w-[560px] flex-shrink-0">
-          <div className={`flex h-[440px] items-center justify-center rounded-[20px] bg-gradient-to-br ${cfg.gradient}`}>
+          <div className={`relative flex h-[440px] items-center justify-center overflow-hidden rounded-[20px] bg-gradient-to-br ${cfg.gradient}`}>
             {post.images && post.images.length > 0 ? (
-              <img src={post.images[selectedImage] || post.images[0]} alt={post.title} className="h-full w-full rounded-[20px] object-contain" />
+              <>
+                <img src={post.images[selectedImage] || post.images[0]} alt="" className="absolute inset-0 h-full w-full scale-110 object-cover blur-xl opacity-60" />
+                <img src={post.images[selectedImage] || post.images[0]} alt={post.title} className="relative h-full w-full rounded-[20px] object-contain" />
+              </>
             ) : post.image_url ? (
-              <img src={post.image_url} alt={post.title} className="h-full w-full rounded-[20px] object-contain" />
+              <>
+                <img src={post.image_url} alt="" className="absolute inset-0 h-full w-full scale-110 object-cover blur-xl opacity-60" />
+                <img src={post.image_url} alt={post.title} className="relative h-full w-full rounded-[20px] object-contain" />
+              </>
             ) : (
               <Icon size={100} strokeWidth={1.5} className="text-white" />
             )}
