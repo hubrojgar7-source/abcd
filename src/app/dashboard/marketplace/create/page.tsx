@@ -136,13 +136,12 @@ export default function CreatePostPage() {
               </div>
             </div>
 
-            <div className="mb-6">
-              <label className="mb-2 block text-base font-medium text-[#202124]">Photos</label>
-              <p className="mb-3 text-sm text-[#9A9A9A]">Add up to 4 photos. First photo is the main image.</p>
-              <MultiImageUploader onUpload={setImages} currentImages={images} maxImages={4} />
-            </div>
-
-            <div className="mb-6 grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-3 gap-5">
+              <div>
+                <label className="mb-2 block text-base font-medium text-[#202124]">Photos</label>
+                <p className="mb-2 text-xs text-[#9A9A9A]">Up to 4 photos</p>
+                <MultiImageUploader onUpload={setImages} currentImages={images} maxImages={4} />
+              </div>
               <div>
                 <label className="mb-2 block text-base font-medium text-[#202124]">
                   {type === "Sell" ? "Price" : type === "Exchange" ? "What you want in return" : "Type"}
@@ -168,7 +167,7 @@ export default function CreatePostPage() {
                   />
                 ) : (
                   <div className="flex items-center rounded-[14px] border border-gray-100 bg-gray-50 px-5 py-3.5 text-base text-[#9A9A9A]">
-                    {type === "Giveaway" ? "Free — no price needed" : "You're looking for this item"}
+                    {type === "Giveaway" ? "Free" : "Looking for this"}
                   </div>
                 )}
               </div>
@@ -180,7 +179,7 @@ export default function CreatePostPage() {
                     onChange={(e) => setCategory(e.target.value)}
                     className="w-full appearance-none rounded-[14px] border border-gray-200 bg-gray-50 px-5 py-3.5 pr-10 text-base outline-none transition-all focus:border-[#B8F25E] focus:bg-white focus:ring-2 focus:ring-[#B8F25E]/30"
                   >
-                    <option value="">Select category</option>
+                    <option value="">Select</option>
                     {categories.map((cat) => (
                       <option key={cat} value={cat}>{cat}</option>
                     ))}
@@ -189,23 +188,23 @@ export default function CreatePostPage() {
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className="flex items-center gap-4 pt-1">
-              <Link
-                href="/dashboard/marketplace"
-                className="rounded-full border border-gray-200 bg-white px-10 py-3.5 text-base font-medium text-[#6B6B6B] transition-all hover:bg-gray-50"
-              >
-                Cancel
-              </Link>
-              <button
-                type="submit"
-                disabled={loading}
-                className="flex items-center gap-2.5 rounded-full bg-[#B8F25E] px-12 py-3.5 text-base font-semibold text-[#202124] transition-all hover:bg-[#a8e04e] disabled:opacity-50"
-              >
-                {loading ? <Loader2 size={18} className="animate-spin" /> : null}
-                {loading ? "Posting..." : "Post Listing"}
-              </button>
-            </div>
+          <div className="flex items-center gap-4 mt-5">
+            <Link
+              href="/dashboard/marketplace"
+              className="rounded-full border border-gray-200 bg-white px-10 py-3.5 text-base font-medium text-[#6B6B6B] transition-all hover:bg-gray-50"
+            >
+              Cancel
+            </Link>
+            <button
+              type="submit"
+              disabled={loading}
+              className="flex items-center gap-2.5 rounded-full bg-[#B8F25E] px-12 py-3.5 text-base font-semibold text-[#202124] transition-all hover:bg-[#a8e04e] disabled:opacity-50"
+            >
+              {loading ? <Loader2 size={18} className="animate-spin" /> : null}
+              {loading ? "Posting..." : "Post Listing"}
+            </button>
           </div>
         </form>
 
