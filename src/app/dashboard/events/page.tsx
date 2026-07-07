@@ -104,7 +104,7 @@ export default function EventsPage() {
         </div>
         <Link
           href="/dashboard/events/create"
-          className="flex items-center gap-2 rounded-full bg-[#B8F25E] px-6 py-3 text-sm font-semibold text-[#202124] shadow-sm transition-colors hover:bg-[#a8e04e]"
+          className="flex items-center gap-2 rounded-full bg-[#B8F25E] px-6 py-3 text-sm font-semibold text-[#202124] shadow-sm transition-colors "
         >
           <Plus size={18} strokeWidth={2.5} />
           Create Event
@@ -141,7 +141,7 @@ export default function EventsPage() {
           <p className="mt-1 text-sm text-[#9A9A9A]">Be the first to create an event!</p>
           <Link
             href="/dashboard/events/create"
-            className="mt-4 rounded-full bg-[#B8F25E] px-6 py-3 text-sm font-semibold text-[#202124] shadow-sm transition-colors hover:bg-[#a8e04e]"
+            className="mt-4 rounded-full bg-[#B8F25E] px-6 py-3 text-sm font-semibold text-[#202124] shadow-sm transition-colors "
           >
             Create Event
           </Link>
@@ -206,7 +206,7 @@ export default function EventsPage() {
                           <span className="text-xs text-[#9A9A9A]">by {event.organizer_name}</span>
                           <button
                             onClick={() => router.push(`/dashboard/events/${event.id}`)}
-                            className="rounded-full bg-[#B8F25E] px-4 py-2 text-xs font-semibold text-[#202124] transition-colors hover:bg-[#a8e04e]"
+                            className="rounded-full bg-[#B8F25E] px-4 py-2 text-xs font-semibold text-[#202124] transition-colors "
                           >
                             View Details
                           </button>

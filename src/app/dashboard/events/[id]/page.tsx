@@ -182,7 +182,7 @@ export default function EventDetailPage() {
                   {deleting ? <Loader2 size={16} className="animate-spin" /> : <Trash2 size={16} />} Delete Event
                 </button>
               ) : !isPast && (
-                <button className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#B8F25E] px-4 py-3 text-sm font-semibold text-[#202124] transition-colors hover:bg-[#a8e04e]">
+                <button className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#B8F25E] px-4 py-3 text-sm font-semibold text-[#202124] transition-colors ">
                   RSVP
                 </button>
               )}

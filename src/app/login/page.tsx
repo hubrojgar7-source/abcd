@@ -162,7 +162,7 @@ export default function LoginPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[#B8F25E] focus:ring-1 focus:ring-[#B8F25E]"
+                className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-100"
                 placeholder="you@example.com"
                 required
               />
@@ -174,7 +174,7 @@ export default function LoginPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[#B8F25E] focus:ring-1 focus:ring-[#B8F25E]"
+                className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-100"
                 placeholder="••••••••"
                 required
               />
@@ -183,7 +183,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-full bg-[#B8F25E] px-4 py-3 text-sm font-semibold text-[#202124] transition-colors hover:bg-[#a8e04e] disabled:opacity-50"
+              className="w-full rounded-full bg-[#B8F25E] px-4 py-3 text-sm font-semibold text-[#202124] transition-colors  disabled:opacity-50"
             >
               {loading ? "Signing in..." : "Sign In"}
             </button>
@@ -198,7 +198,7 @@ export default function LoginPage() {
                 type="tel"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
-                className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[#B8F25E] focus:ring-1 focus:ring-[#B8F25E]"
+                className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-100"
                 placeholder="+91 98765 43210"
                 required
                 disabled={otpSent}
@@ -238,7 +238,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading || (otpSent && otp.length !== 6)}
-              className="w-full rounded-full bg-[#B8F25E] px-4 py-3 text-sm font-semibold text-[#202124] transition-colors hover:bg-[#a8e04e] disabled:opacity-50"
+              className="w-full rounded-full bg-[#B8F25E] px-4 py-3 text-sm font-semibold text-[#202124] transition-colors  disabled:opacity-50"
             >
               {loading
                 ? otpSent ? "Verifying..." : "Sending..."

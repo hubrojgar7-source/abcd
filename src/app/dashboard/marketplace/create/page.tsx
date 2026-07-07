@@ -1,16 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Tag, ArrowLeftRight, Gift, UserPlus, ArrowLeft, ChevronDown, Loader2 } from "lucide-react";
+import { Tag, ArrowLeftRight, Gift, UserPlus, ArrowLeft, ChevronDown, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import Link from "next/link";
 import MultiImageUploader from "@/components/multi-image-uploader";
 
 const postTypes = [
-  { value: "Sell", label: "Sell", icon: Tag, gradient: "from-[#B8F25E] to-[#4CAF50]" },
-  { value: "Exchange", label: "Exchange", icon: ArrowLeftRight, gradient: "from-[#60A5FA] to-[#3B82F6]" },
-  { value: "Giveaway", label: "Giveaway", icon: Gift, gradient: "from-[#A78BFA] to-[#8B5CF6]" },
-  { value: "Request", label: "Request", icon: UserPlus, gradient: "from-[#F472B6] to-[#EC4899]" },
+  { value: "Sell", label: "Sell", icon: Tag, gradient: "from-gray-200 to-gray-300" },
+  { value: "Exchange", label: "Exchange", icon: ArrowLeftRight, gradient: "from-gray-200 to-gray-300" },
+  { value: "Giveaway", label: "Giveaway", icon: Gift, gradient: "from-gray-200 to-gray-300" },
+  { value: "Request", label: "Request", icon: UserPlus, gradient: "from-gray-200 to-gray-300" },
 ];
 
 const categories = [
@@ -28,6 +28,12 @@ export default function CreatePostPage() {
   const [images, setImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [previewIdx, setPreviewIdx] = useState(0);
+
+  useEffect(() => {
+    if (images.length === 0) setPreviewIdx(0);
+    else if (previewIdx >= images.length) setPreviewIdx(images.length - 1);
+  }, [images.length, previewIdx]);
 
   const selectedType = postTypes.find((t) => t.value === type);
 
@@ -97,12 +103,12 @@ export default function CreatePostPage() {
                       onClick={() => setType(t.value)}
                       className={`flex items-center gap-3 rounded-full px-6 py-3.5 text-lg font-medium transition-all duration-200 ${
                         isSelected
-                          ? "bg-white text-[#202124] shadow-md ring-2 ring-[#B8F25E]"
+                          ? "bg-white text-[#202124] shadow-md ring-2 ring-gray-300"
                           : "bg-gray-50 text-[#6B6B6B] hover:bg-gray-100 hover:text-[#202124]"
                       }`}
                     >
                       <div className={`flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br ${t.gradient}`}>
-                        <Icon size={16} strokeWidth={2.5} className="text-white" />
+                        <Icon size={16} strokeWidth={2.5} className="text-[#6B6B6B]" />
                       </div>
                       {t.label}
                     </button>
@@ -118,7 +124,7 @@ export default function CreatePostPage() {
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full rounded-[14px] border border-gray-200 bg-gray-50 px-5 py-3.5 text-lg outline-none transition-all placeholder:text-[#B0B0B0] focus:border-[#B8F25E] focus:bg-white focus:ring-2 focus:ring-[#B8F25E]/30"
+                  className="w-full rounded-[14px] border border-gray-200 bg-gray-50 px-5 py-3.5 text-lg outline-none transition-all placeholder:text-[#B0B0B0] focus:border-gray-300 focus:bg-white focus:ring-2 focus:ring-gray-100"
                   placeholder="e.g. MacBook Pro 2021"
                   required
                 />
@@ -134,7 +140,7 @@ export default function CreatePostPage() {
                       type="text"
                       value={price}
                       onChange={(e) => setPrice(e.target.value)}
-                      className="w-full rounded-[14px] border border-gray-200 bg-gray-50 pl-10 pr-5 py-3.5 text-lg outline-none transition-all placeholder:text-[#B0B0B0] focus:border-[#B8F25E] focus:bg-white focus:ring-2 focus:ring-[#B8F25E]/30"
+                      className="w-full rounded-[14px] border border-gray-200 bg-gray-50 pl-10 pr-5 py-3.5 text-lg outline-none transition-all placeholder:text-[#B0B0B0] focus:border-gray-300 focus:bg-white focus:ring-2 focus:ring-gray-100"
                       placeholder="0.00"
                     />
                   </div>
@@ -143,7 +149,7 @@ export default function CreatePostPage() {
                     type="text"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
-                    className="w-full rounded-[14px] border border-gray-200 bg-gray-50 px-5 py-3.5 text-lg outline-none transition-all placeholder:text-[#B0B0B0] focus:border-[#B8F25E] focus:bg-white focus:ring-2 focus:ring-[#B8F25E]/30"
+                    className="w-full rounded-[14px] border border-gray-200 bg-gray-50 px-5 py-3.5 text-lg outline-none transition-all placeholder:text-[#B0B0B0] focus:border-gray-300 focus:bg-white focus:ring-2 focus:ring-gray-100"
                     placeholder="e.g. Samsung case"
                   />
                 ) : (
@@ -158,7 +164,7 @@ export default function CreatePostPage() {
                   <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="w-full appearance-none rounded-[14px] border border-gray-200 bg-gray-50 px-5 py-3.5 pr-10 text-lg outline-none transition-all focus:border-[#B8F25E] focus:bg-white focus:ring-2 focus:ring-[#B8F25E]/30"
+                    className="w-full appearance-none rounded-[14px] border border-gray-200 bg-gray-50 px-5 py-3.5 pr-10 text-lg outline-none transition-all focus:border-gray-300 focus:bg-white focus:ring-2 focus:ring-gray-100"
                   >
                     <option value="">Select</option>
                     {categories.map((cat) => (
@@ -175,8 +181,8 @@ export default function CreatePostPage() {
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                rows={3}
-                className="w-full resize-none rounded-[14px] border border-gray-200 bg-gray-50 px-5 py-3.5 text-lg outline-none transition-all placeholder:text-[#B0B0B0] focus:border-[#B8F25E] focus:bg-white focus:ring-2 focus:ring-[#B8F25E]/30"
+                rows={2}
+                className="w-full resize-none rounded-[14px] border border-gray-200 bg-gray-50 px-5 py-3.5 text-lg outline-none transition-all placeholder:text-[#B0B0B0] focus:border-gray-300 focus:bg-white focus:ring-2 focus:ring-gray-100"
                 placeholder="Describe your item, condition, any details buyers should know..."
                 required
               />
@@ -198,7 +204,7 @@ export default function CreatePostPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex items-center gap-2.5 rounded-full bg-[#B8F25E] px-12 py-3.5 text-lg font-semibold text-[#202124] transition-all hover:bg-[#a8e04e] disabled:opacity-50"
+                className="flex items-center gap-2.5 rounded-full bg-[#B8F25E] px-12 py-3.5 text-lg font-semibold text-[#202124] transition-all  disabled:opacity-50"
               >
                 {loading ? <Loader2 size={18} className="animate-spin" /> : null}
                 {loading ? "Posting..." : "Post Listing"}
@@ -207,36 +213,52 @@ export default function CreatePostPage() {
           </div>
         </form>
 
-        <div className="w-[440px] flex-shrink-0">
+        <div className="w-[440px] flex-shrink-0 relative">
+          <span className="absolute -top-7 left-0 text-base font-medium text-[#9A9A9A]">Live Preview</span>
           <div className="rounded-[24px] bg-white p-6 shadow-sm h-full flex flex-col">
-            <span className="text-base font-medium text-[#9A9A9A] mb-4">Live Preview</span>
-            <div className={`flex items-center justify-center overflow-hidden rounded-[16px] min-h-[300px] max-h-[300px] ${images.length > 0 ? "bg-gray-50" : `bg-gradient-to-br ${selectedType?.gradient || "from-gray-200 to-gray-300"}`}`}>
+            <div className={`max-h-[540px] min-h-[540px] relative flex items-center justify-center overflow-hidden rounded-[16px] ${images.length > 0 ? "bg-gray-50" : "border border-gray-200 bg-white"}`}>
               {images.length > 0 ? (
-                <img src={images[0]} alt="Preview" className="h-full w-full object-contain max-h-[300px]" />
+                <>
+                  <img src={images[Math.min(previewIdx, images.length - 1)]} alt="Preview" className="h-full w-full object-cover" />
+                  {images.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => setPreviewIdx((previewIdx - 1 + images.length) % images.length)}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-black/40 text-white transition-colors hover:bg-black/60"
+                      >
+                        <ChevronLeft size={18} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setPreviewIdx((previewIdx + 1) % images.length)}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-black/40 text-white transition-colors hover:bg-black/60"
+                      >
+                        <ChevronRight size={18} />
+                      </button>
+                      <span className="absolute bottom-2 right-3 text-[10px] font-medium text-white bg-black/40 rounded-full px-2 py-0.5">{previewIdx + 1}/{images.length}</span>
+                    </>
+                  )}
+                </>
               ) : (
-                selectedType && <selectedType.icon size={72} strokeWidth={1.5} className="text-white" />
+                <p className="text-sm text-[#B0B0B0]">Your uploaded image will be shown here</p>
               )}
             </div>
-            <div className="mt-4">
+            <div className="mt-auto pt-12">
               <div className="flex items-center justify-between">
-                <span className={`rounded-full px-3 py-1 text-[10px] font-semibold ${
-                  type === "Sell" ? "bg-[#B8F25E] text-[#202124]" :
-                  type === "Exchange" ? "bg-[#60A5FA] text-white" :
-                  type === "Giveaway" ? "bg-[#A78BFA] text-white" :
-                  "bg-[#F472B6] text-white"
-                }`}>
+                <span className={`rounded-full px-3 py-1 text-xs font-semibold border border-gray-300 text-[#6B6B6B]`}>
                   {type}
                 </span>
-                <span className="text-[10px] text-[#9A9A9A]">Just now</span>
+                <span className="text-xs text-[#9A9A9A]">Just now</span>
               </div>
-              <h3 className="mt-3 text-base font-semibold text-[#202124]">
+              <h3 className="mt-3 text-lg font-semibold text-[#202124]">
                 {title || "Your title here"}
               </h3>
               <p className="mt-1 text-sm text-[#6B6B6B] line-clamp-2">
                 {description || "Your description will appear here..."}
               </p>
               <div className="mt-3 flex items-center justify-between">
-                <span className="text-xl font-semibold text-[#202124]">
+                <span className="text-2xl font-semibold text-[#202124]">
                   {type === "Sell" ? (price ? `$${price}` : "$0") :
                    type === "Giveaway" ? "Free" :
                    type === "Exchange" ? (price || "Swap") :

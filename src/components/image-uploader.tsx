@@ -112,7 +112,7 @@ export default function ImageUploader({ onUpload, currentImage }: ImageUploaderP
       ) : (
         <label
           htmlFor="image-upload"
-          className="flex h-[160px] w-[160px] cursor-pointer flex-col items-center justify-center gap-2 rounded-[20px] border-2 border-dashed border-gray-200 bg-gray-50 transition-all hover:border-[#B8F25E] hover:bg-[#B8F25E]/5"
+          className="flex h-[160px] w-[160px] cursor-pointer flex-col items-center justify-center gap-2 rounded-[20px] border-2 border-dashed border-gray-200 bg-gray-50 transition-all hover:border-gray-400 hover:bg-gray-100"
         >
           {uploading ? (
             <Loader2 size={28} strokeWidth={1.5} className="animate-spin text-[#9A9A9A]" />

@@ -46,7 +46,7 @@ export default function ContactPage() {
               <p className="mt-2 text-sm text-[#6B6B6B]">We&apos;ll get back to you soon.</p>
               <button
                 onClick={() => setSubmitted(false)}
-                className="mt-4 rounded-full bg-[#B8F25E] px-5 py-2 text-sm font-semibold text-[#202124] hover:bg-[#a8e04e]"
+                className="mt-4 rounded-full bg-[#B8F25E] px-5 py-2 text-sm font-semibold text-[#202124] "
               >
                 Send Another
               </button>
@@ -59,7 +59,7 @@ export default function ContactPage() {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[#B8F25E] focus:ring-1 focus:ring-[#B8F25E]"
+                  className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-100"
                   placeholder="Your name"
                   required
                 />
@@ -70,7 +70,7 @@ export default function ContactPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[#B8F25E] focus:ring-1 focus:ring-[#B8F25E]"
+                  className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-100"
                   placeholder="you@example.com"
                   required
                 />
@@ -80,7 +80,7 @@ export default function ContactPage() {
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[#B8F25E] focus:ring-1 focus:ring-[#B8F25E]"
+                  className="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-100"
                   rows={5}
                   placeholder="How can we help?"
                   required
@@ -88,7 +88,7 @@ export default function ContactPage() {
               </div>
               <button
                 type="submit"
-                className="w-full rounded-full bg-[#B8F25E] px-4 py-3 text-sm font-semibold text-[#202124] hover:bg-[#a8e04e]"
+                className="w-full rounded-full bg-[#B8F25E] px-4 py-3 text-sm font-semibold text-[#202124] "
               >
                 Send Message
               </button>

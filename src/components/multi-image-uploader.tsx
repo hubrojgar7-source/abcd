@@ -129,7 +129,7 @@ export default function MultiImageUploader({ onUpload, currentImages, maxImages 
         {currentImages.length < maxImages && (
           <label
             htmlFor="image-upload-multi"
-            className="flex h-[120px] w-[120px] cursor-pointer flex-col items-center justify-center gap-1.5 rounded-[16px] border-2 border-dashed border-gray-200 bg-gray-50 transition-all hover:border-[#B8F25E] hover:bg-[#B8F25E]/5"
+            className="flex h-[120px] w-[120px] cursor-pointer flex-col items-center justify-center gap-1.5 rounded-[16px] border-2 border-dashed border-gray-200 bg-gray-50 transition-all hover:border-gray-400 hover:bg-gray-100"
           >
             {uploading ? (
               <Loader2 size={24} strokeWidth={1.5} className="animate-spin text-[#9A9A9A]" />

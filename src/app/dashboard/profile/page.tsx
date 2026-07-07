@@ -34,7 +34,7 @@ export default function ProfilePage() {
               <input
                 type="text"
                 defaultValue={user?.name || ""}
-                className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[#B8F25E] focus:ring-1 focus:ring-[#B8F25E]"
+                className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-100"
               />
             </div>
             <div>
@@ -42,7 +42,7 @@ export default function ProfilePage() {
               <input
                 type="email"
                 defaultValue={user?.email || ""}
-                className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[#B8F25E] focus:ring-1 focus:ring-[#B8F25E]"
+                className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-100"
               />
             </div>
             <div>
@@ -50,7 +50,7 @@ export default function ProfilePage() {
               <input
                 type="tel"
                 placeholder="Not set"
-                className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[#B8F25E] focus:ring-1 focus:ring-[#B8F25E]"
+                className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-100"
               />
             </div>
             <div>
@@ -58,11 +58,11 @@ export default function ProfilePage() {
               <input
                 type="text"
                 placeholder="Not set"
-                className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[#B8F25E] focus:ring-1 focus:ring-[#B8F25E]"
+                className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-100"
               />
             </div>
           </div>
-          <button className="mt-6 rounded-full bg-[#B8F25E] px-6 py-3 text-sm font-semibold text-[#202124] hover:bg-[#a8e04e]">
+          <button className="mt-6 rounded-full bg-[#B8F25E] px-6 py-3 text-sm font-semibold text-[#202124] ">
             Save Changes
           </button>
         </div>

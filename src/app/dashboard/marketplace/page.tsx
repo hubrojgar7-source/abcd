@@ -22,10 +22,10 @@ interface Post {
 }
 
 const typeConfig: Record<string, { gradient: string; badge: string; icon: typeof Tag }> = {
-  Sell: { gradient: "from-[#B8F25E] to-[#4CAF50]", badge: "bg-[#B8F25E] text-[#202124]", icon: Tag },
-  Exchange: { gradient: "from-[#60A5FA] to-[#3B82F6]", badge: "bg-[#60A5FA] text-white", icon: ArrowLeftRight },
-  Giveaway: { gradient: "from-[#A78BFA] to-[#8B5CF6]", badge: "bg-[#A78BFA] text-white", icon: Gift },
-  Request: { gradient: "from-[#F472B6] to-[#EC4899]", badge: "bg-[#F472B6] text-white", icon: UserPlus },
+  Sell: { gradient: "from-gray-50 to-gray-100", badge: "border border-gray-300 text-[#6B6B6B]", icon: Tag },
+  Exchange: { gradient: "from-gray-50 to-gray-100", badge: "border border-gray-300 text-[#6B6B6B]", icon: ArrowLeftRight },
+  Giveaway: { gradient: "from-gray-50 to-gray-100", badge: "border border-gray-300 text-[#6B6B6B]", icon: Gift },
+  Request: { gradient: "from-gray-50 to-gray-100", badge: "border border-gray-300 text-[#6B6B6B]", icon: UserPlus },
 };
 
 function timeAgo(dateStr: string) {
@@ -95,7 +95,7 @@ export default function Marketplace() {
         </div>
         <Link
           href="/dashboard/marketplace/create"
-          className="rounded-full bg-[#B8F25E] px-6 py-3 text-sm font-semibold text-[#202124] shadow-sm transition-colors hover:bg-[#a8e04e]"
+          className="rounded-full bg-[#B8F25E] px-6 py-3 text-sm font-semibold text-[#202124] shadow-sm transition-colors "
         >
           + Post Listing
         </Link>
@@ -178,7 +178,7 @@ export default function Marketplace() {
           <p className="mt-1 text-sm text-[#9A9A9A]">Be the first to post something!</p>
           <Link
             href="/dashboard/marketplace/create"
-            className="mt-4 rounded-full bg-[#B8F25E] px-6 py-3 text-sm font-semibold text-[#202124] shadow-sm transition-colors hover:bg-[#a8e04e]"
+            className="mt-4 rounded-full bg-[#B8F25E] px-6 py-3 text-sm font-semibold text-[#202124] shadow-sm transition-colors "
           >
             + Post Listing
           </Link>
@@ -203,7 +203,7 @@ export default function Marketplace() {
                     {deleting === item.id ? <Loader2 size={14} className="animate-spin" /> : <Trash2 size={14} />}
                   </button>
                 )}
-                <div className={`flex h-[240px] items-center justify-center overflow-hidden rounded-[16px] ${(item.images && item.images.length > 0) || item.image_url ? "bg-gray-50" : `bg-gradient-to-br ${cfg.gradient}`}`}>
+                <div className={`flex h-[240px] items-center justify-center overflow-hidden rounded-[16px] ${(item.images && item.images.length > 0) || item.image_url ? "bg-gray-50" : "border border-gray-200 bg-white"}`}>
                   {(item.images && item.images.length > 0) || item.image_url ? (
                     <img
                       src={(item.images && item.images[0]) || item.image_url || ""}
@@ -216,7 +216,7 @@ export default function Marketplace() {
                       }}
                     />
                   ) : (
-                    <Icon size={80} strokeWidth={1.5} className="text-white" />
+                    <Icon size={80} strokeWidth={1.5} className="text-[#B0B0B0]" />
                   )}
                 </div>
                 <div className="mt-4">
@@ -247,13 +247,13 @@ export default function Marketplace() {
                           <MessageSquare size={14} className="inline mr-1.5" />Inbox
                         </button>
                       ) : (
-                        <button onClick={(e) => e.stopPropagation()} className="w-full rounded-full bg-[#B8F25E] px-4 py-2.5 text-sm font-semibold text-[#202124] transition-colors hover:bg-[#a8e04e]">
+                        <button onClick={(e) => e.stopPropagation()} className="w-full rounded-full bg-[#B8F25E] px-4 py-2.5 text-sm font-semibold text-[#202124] transition-colors ">
                           I Have This
                         </button>
                       )
                     ) : (
                       <>
-                        <button onClick={(e) => e.stopPropagation()} className="flex-1 rounded-full bg-[#B8F25E] px-4 py-2.5 text-sm font-semibold text-[#202124] transition-colors hover:bg-[#a8e04e]">
+                        <button onClick={(e) => e.stopPropagation()} className="flex-1 rounded-full bg-[#B8F25E] px-4 py-2.5 text-sm font-semibold text-[#202124] transition-colors ">
                           {item.type === "Sell" ? "Buy" : item.type === "Exchange" ? "Swap" : "Claim"}
                         </button>
                         {myId === item.user_id ? (

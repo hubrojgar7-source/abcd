@@ -23,7 +23,7 @@ export default function ServicesPage() {
             </div>
             <h3 className="mt-4 text-lg font-semibold text-[#202124]">{service.title}</h3>
             <p className="mt-2 text-sm text-[#6B6B6B]">{service.description}</p>
-            <button className="mt-4 self-start rounded-full bg-[#B8F25E] px-5 py-2 text-sm font-semibold text-[#202124] hover:bg-[#a8e04e]">
+            <button className="mt-4 self-start rounded-full bg-[#B8F25E] px-5 py-2 text-sm font-semibold text-[#202124] ">
               Learn More
             </button>
           </div>

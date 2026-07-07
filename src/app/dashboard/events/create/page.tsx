@@ -109,7 +109,7 @@ export default function CreateEventPage() {
                   type="text"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full rounded-[16px] border border-gray-200 bg-gray-50 px-5 py-3.5 text-sm outline-none transition-all placeholder:text-[#B0B0B0] focus:border-[#B8F25E] focus:bg-white focus:ring-2 focus:ring-[#B8F25E]/30"
+                  className="w-full rounded-[16px] border border-gray-200 bg-gray-50 px-5 py-3.5 text-sm outline-none transition-all placeholder:text-[#B0B0B0] focus:border-gray-300 focus:bg-white focus:ring-2 focus:ring-gray-100"
                   placeholder="e.g. Community Yoga Workshop"
                   required
                 />
@@ -120,7 +120,7 @@ export default function CreateEventPage() {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   rows={4}
-                  className="w-full rounded-[16px] border border-gray-200 bg-gray-50 px-5 py-3.5 text-sm outline-none transition-all placeholder:text-[#B0B0B0] focus:border-[#B8F25E] focus:bg-white focus:ring-2 focus:ring-[#B8F25E]/30 resize-none"
+                  className="w-full rounded-[16px] border border-gray-200 bg-gray-50 px-5 py-3.5 text-sm outline-none transition-all placeholder:text-[#B0B0B0] focus:border-gray-300 focus:bg-white focus:ring-2 focus:ring-gray-100 resize-none"
                   placeholder="Describe the event, what to expect, who should attend..."
                   required
                 />
@@ -163,7 +163,7 @@ export default function CreateEventPage() {
                   type="date"
                   value={eventDate}
                   onChange={(e) => setEventDate(e.target.value)}
-                  className="w-full rounded-[16px] border border-gray-200 bg-gray-50 px-5 py-3.5 text-sm outline-none transition-all focus:border-[#B8F25E] focus:bg-white focus:ring-2 focus:ring-[#B8F25E]/30"
+                  className="w-full rounded-[16px] border border-gray-200 bg-gray-50 px-5 py-3.5 text-sm outline-none transition-all focus:border-gray-300 focus:bg-white focus:ring-2 focus:ring-gray-100"
                   required
                 />
               </div>
@@ -176,7 +176,7 @@ export default function CreateEventPage() {
                   type="time"
                   value={eventTime}
                   onChange={(e) => setEventTime(e.target.value)}
-                  className="w-full rounded-[16px] border border-gray-200 bg-gray-50 px-5 py-3.5 text-sm outline-none transition-all focus:border-[#B8F25E] focus:bg-white focus:ring-2 focus:ring-[#B8F25E]/30"
+                  className="w-full rounded-[16px] border border-gray-200 bg-gray-50 px-5 py-3.5 text-sm outline-none transition-all focus:border-gray-300 focus:bg-white focus:ring-2 focus:ring-gray-100"
                 />
               </div>
             </div>
@@ -194,7 +194,7 @@ export default function CreateEventPage() {
                 type="text"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-                className="w-full rounded-[16px] border border-gray-200 bg-gray-50 px-5 py-3.5 text-sm outline-none transition-all placeholder:text-[#B0B0B0] focus:border-[#B8F25E] focus:bg-white focus:ring-2 focus:ring-[#B8F25E]/30"
+                className="w-full rounded-[16px] border border-gray-200 bg-gray-50 px-5 py-3.5 text-sm outline-none transition-all placeholder:text-[#B0B0B0] focus:border-gray-300 focus:bg-white focus:ring-2 focus:ring-gray-100"
                 placeholder="e.g. Kathmandu Community Center"
               />
             </div>
@@ -220,7 +220,7 @@ export default function CreateEventPage() {
             <button
               type="submit"
               disabled={loading || !category}
-              className="rounded-full bg-[#B8F25E] px-10 py-3.5 text-sm font-semibold text-[#202124] shadow-sm transition-all hover:bg-[#a8e04e] hover:shadow-md disabled:opacity-50"
+              className="rounded-full bg-[#B8F25E] px-10 py-3.5 text-sm font-semibold text-[#202124] shadow-sm transition-all  hover:shadow-md disabled:opacity-50"
             >
               {loading ? "Creating..." : "Create Event"}
             </button>

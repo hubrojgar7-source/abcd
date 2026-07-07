@@ -78,7 +78,7 @@ export default function RegisterPage() {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[#B8F25E] focus:ring-1 focus:ring-[#B8F25E]"
+              className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-100"
               placeholder="Your name"
               required
             />
@@ -90,7 +90,7 @@ export default function RegisterPage() {
               type="tel"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[#B8F25E] focus:ring-1 focus:ring-[#B8F25E]"
+              className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-100"
               placeholder="+91 98765 43210"
             />
           </div>
@@ -101,7 +101,7 @@ export default function RegisterPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[#B8F25E] focus:ring-1 focus:ring-[#B8F25E]"
+              className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-100"
               placeholder="you@example.com"
             />
           </div>
@@ -112,7 +112,7 @@ export default function RegisterPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-[#B8F25E] focus:ring-1 focus:ring-[#B8F25E]"
+              className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-300 focus:ring-1 focus:ring-gray-100"
               placeholder="••••••••"
               minLength={6}
             />
@@ -121,7 +121,7 @@ export default function RegisterPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-full bg-[#B8F25E] px-4 py-3 text-sm font-semibold text-[#202124] transition-colors hover:bg-[#a8e04e] disabled:opacity-50"
+            className="w-full rounded-full bg-[#B8F25E] px-4 py-3 text-sm font-semibold text-[#202124] transition-colors  disabled:opacity-50"
           >
             {loading ? "Creating account..." : "Sign Up"}
           </button>

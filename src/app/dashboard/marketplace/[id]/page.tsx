@@ -316,7 +316,7 @@ export default function PostDetail() {
               ) : (
                 <button
                   onClick={() => router.push(`/dashboard/messages?userId=${post.user_id}`)}
-                  className="flex w-full items-center justify-center gap-2 rounded-full bg-[#B8F25E] px-4 py-3 text-sm font-semibold text-[#202124] transition-colors hover:bg-[#a8e04e]"
+                  className="flex w-full items-center justify-center gap-2 rounded-full bg-[#B8F25E] px-4 py-3 text-sm font-semibold text-[#202124] transition-colors "
                 >
                   <MessageSquare size={16} /> Message Seller
                 </button>
@@ -347,12 +347,12 @@ export default function PostDetail() {
                   onChange={(e) => setReviewContent(e.target.value)}
                   placeholder="Write your review (optional)..."
                   rows={3}
-                  className="mt-3 w-full resize-none rounded-[12px] border border-gray-200 bg-white p-4 text-sm text-[#202124] outline-none placeholder:text-[#B0B0B0] focus:border-[#B8F25E] focus:ring-1 focus:ring-[#B8F25E]"
+                  className="mt-3 w-full resize-none rounded-[12px] border border-gray-200 bg-white p-4 text-sm text-[#202124] outline-none placeholder:text-[#B0B0B0] focus:border-gray-300 focus:ring-1 focus:ring-gray-100"
                 />
                 <button
                   type="submit"
                   disabled={!reviewRating || submittingReview}
-                  className="mt-3 rounded-full bg-[#B8F25E] px-6 py-2.5 text-sm font-semibold text-[#202124] transition-colors hover:bg-[#a8e04e] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="mt-3 rounded-full bg-[#B8F25E] px-6 py-2.5 text-sm font-semibold text-[#202124] transition-colors  disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {submittingReview ? "Submitting..." : "Submit Review"}
                 </button>
@@ -403,12 +403,12 @@ export default function PostDetail() {
                 value={commentContent}
                 onChange={(e) => setCommentContent(e.target.value)}
                 placeholder="Write a comment..."
-                className="flex-1 rounded-full border border-gray-200 bg-[#F8F8F8] px-5 py-3 text-sm text-[#202124] outline-none placeholder:text-[#B0B0B0] focus:border-[#B8F25E] focus:bg-white focus:ring-1 focus:ring-[#B8F25E]"
+                className="flex-1 rounded-full border border-gray-200 bg-[#F8F8F8] px-5 py-3 text-sm text-[#202124] outline-none placeholder:text-[#B0B0B0] focus:border-gray-300 focus:bg-white focus:ring-1 focus:ring-gray-100"
               />
               <button
                 type="submit"
                 disabled={!commentContent.trim() || submittingComment}
-                className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-[#B8F25E] text-[#202124] transition-colors hover:bg-[#a8e04e] disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-[#B8F25E] text-[#202124] transition-colors  disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {submittingComment ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} strokeWidth={2} />}
               </button>
