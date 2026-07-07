@@ -207,7 +207,7 @@ export default function CreatePostPage() {
           </div>
         </form>
 
-        <div className="w-[440px] flex-shrink-0">
+        <div className="w-[440px] flex-shrink-0 flex flex-col">
           <span className="text-base font-medium text-[#9A9A9A] mb-3 block">Live Preview</span>
           <div className="rounded-[24px] bg-white p-6 shadow-sm flex-1 flex flex-col">
             <div className={`flex-1 flex items-center justify-center overflow-hidden rounded-[16px] ${images.length > 0 ? "bg-gray-50" : `bg-gradient-to-br ${selectedType?.gradient || "from-gray-200 to-gray-300"}`}`}>
