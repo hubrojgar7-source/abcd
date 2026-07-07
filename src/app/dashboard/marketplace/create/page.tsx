@@ -210,9 +210,9 @@ export default function CreatePostPage() {
         <div className="w-[440px] flex-shrink-0">
           <div className="rounded-[24px] bg-white p-6 shadow-sm h-full flex flex-col">
             <span className="text-base font-medium text-[#9A9A9A] mb-4">Live Preview</span>
-            <div className={`flex-1 flex items-center justify-center overflow-hidden rounded-[16px] ${images.length > 0 ? "bg-gray-50" : `bg-gradient-to-br ${selectedType?.gradient || "from-gray-200 to-gray-300"}`}`}>
+            <div className={`flex items-center justify-center overflow-hidden rounded-[16px] min-h-[300px] max-h-[300px] ${images.length > 0 ? "bg-gray-50" : `bg-gradient-to-br ${selectedType?.gradient || "from-gray-200 to-gray-300"}`}`}>
               {images.length > 0 ? (
-                <img src={images[0]} alt="Preview" className="h-full w-full object-contain" />
+                <img src={images[0]} alt="Preview" className="h-full w-full object-contain max-h-[300px]" />
               ) : (
                 selectedType && <selectedType.icon size={72} strokeWidth={1.5} className="text-white" />
               )}
