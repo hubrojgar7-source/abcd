@@ -133,13 +133,13 @@ export default function EventsPage() {
           {upcoming.length > 0 && (
             <div>
               <h2 className="mb-4 text-lg font-semibold text-[#202124]">Upcoming Events</h2>
-              <div className="grid grid-cols-3 gap-5">
+              <div className="grid grid-cols-4 gap-5">
                 {upcoming.map((event) => {
                   const cfg = categoryConfig[event.category] || categoryConfig.Community;
                   const Icon = cfg.icon;
                   return (
                     <div key={event.id} className="rounded-[24px] bg-white shadow-sm transition-shadow hover:shadow-md overflow-hidden">
-                      <div className={`flex h-[160px] items-center justify-center ${cfg.bg}`}>
+                      <div className={`flex h-[130px] items-center justify-center ${cfg.bg}`}>
                         {event.image_url ? (
                           <img src={event.image_url} alt={event.title} className="h-full w-full object-cover" />
                         ) : (
@@ -190,7 +190,7 @@ export default function EventsPage() {
           {past.length > 0 && (
             <div>
               <h2 className="mb-4 text-lg font-semibold text-[#9A9A9A]">Past Events</h2>
-              <div className="grid grid-cols-3 gap-5">
+              <div className="grid grid-cols-4 gap-5">
                 {past.map((event) => {
                   const cfg = categoryConfig[event.category] || categoryConfig.Community;
                   const Icon = cfg.icon;
