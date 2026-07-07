@@ -146,7 +146,7 @@ export default function EventsPage() {
                           <img
                             src={event.image_url}
                             alt={event.title}
-                            className="h-full w-full cursor-pointer object-contain transition-transform hover:scale-105"
+                            className="cursor-pointer transition-transform hover:scale-105"
                             onClick={() => setLightbox({ src: event.image_url!, alt: event.title })}
                           />
                         ) : (

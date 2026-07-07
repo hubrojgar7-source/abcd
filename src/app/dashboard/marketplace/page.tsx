@@ -183,7 +183,7 @@ export default function Marketplace() {
                     <img
                       src={(item.images && item.images[0]) || item.image_url || ""}
                       alt={item.title}
-                      className="max-h-full max-w-full cursor-pointer object-contain transition-transform hover:scale-105"
+                      className="cursor-pointer transition-transform hover:scale-105"
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();

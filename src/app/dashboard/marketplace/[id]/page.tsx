@@ -193,14 +193,14 @@ export default function PostDetail() {
               <img
                 src={post.images[selectedImage] || post.images[0]}
                 alt={post.title}
-                className="h-full w-full cursor-pointer object-contain transition-transform hover:scale-105"
+                className="cursor-pointer transition-transform hover:scale-105"
                 onClick={() => setLightbox({ src: post.images[selectedImage] || post.images[0], alt: post.title })}
               />
             ) : post.image_url ? (
               <img
                 src={post.image_url}
                 alt={post.title}
-                className="h-full w-full cursor-pointer object-contain transition-transform hover:scale-105"
+                className="cursor-pointer transition-transform hover:scale-105"
                 onClick={() => setLightbox({ src: post.image_url!, alt: post.title })}
               />
             ) : (
