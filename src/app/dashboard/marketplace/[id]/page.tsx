@@ -186,7 +186,7 @@ export default function PostDetail() {
 
       <div className="flex gap-8">
         <div className="w-[560px] flex-shrink-0">
-          <div className={`relative flex h-[440px] items-center justify-center overflow-hidden rounded-[20px] bg-gradient-to-br ${cfg.gradient}`}>
+          <div className={`relative flex h-[440px] items-center justify-center overflow-hidden rounded-[20px] ${(post.images && post.images.length > 0) || post.image_url ? "bg-white" : `bg-gradient-to-br ${cfg.gradient}`}`}>
             {post.images && post.images.length > 0 ? (
               <>
                 <img src={post.images[selectedImage] || post.images[0]} alt="" className="absolute inset-0 h-full w-full scale-110 object-cover blur-xl opacity-60" />

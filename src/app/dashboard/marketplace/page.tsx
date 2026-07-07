@@ -176,7 +176,7 @@ export default function Marketplace() {
                 href={`/dashboard/marketplace/${item.id}`}
                 className="rounded-[24px] bg-white p-5 shadow-sm transition-all hover:shadow-md"
               >
-                <div className={`relative flex h-[200px] items-center justify-center overflow-hidden rounded-[16px] bg-gradient-to-br ${cfg.gradient}`}>
+                <div className={`relative flex h-[200px] items-center justify-center overflow-hidden rounded-[16px] ${(item.images && item.images.length > 0) || item.image_url ? "bg-white" : `bg-gradient-to-br ${cfg.gradient}`}`}>
                   {(item.images && item.images.length > 0) || item.image_url ? (
                     <>
                       <img
