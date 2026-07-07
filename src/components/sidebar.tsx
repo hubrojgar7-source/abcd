@@ -9,6 +9,7 @@ import {
   Globe,
   Users,
   Settings,
+  HelpCircle,
 } from "lucide-react";
 
 const navItems = [
@@ -17,6 +18,7 @@ const navItems = [
   { icon: MessageSquare, href: "/dashboard/messages", label: "Messages" },
   { icon: Globe, href: "/dashboard/marketplace", label: "Marketplace" },
   { icon: Users, href: "/dashboard/users", label: "Users" },
+  { icon: HelpCircle, href: "/dashboard/help", label: "Help" },
   { icon: Settings, href: "/dashboard/settings", label: "Settings" },
 ];
 
